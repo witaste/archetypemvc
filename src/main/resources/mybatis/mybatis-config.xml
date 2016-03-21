@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- mybatis-config.xml -->
+	<settings>
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="aggressiveLazyLoading" value="false" />
+		<setting name="cacheEnabled" value="false" />
+        <setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	
+	<plugins>
+		<plugin interceptor="com.hehe120.mybatis.PaginationInterceptor">
+			<property name="dialect" value="mysql" />
+		</plugin>
+	</plugins>
+	
+	<mappers>
+		<package name="com.hehe120.dao" />
+	</mappers>
+</configuration>

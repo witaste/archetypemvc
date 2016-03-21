@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dataSourceAlpha" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="#{config['jdbc.driverClassName']}" />
+		<property name="url" value="#{config['jdbc.url']}" />
+		<property name="username" value="#{config['jdbc.username']}" />
+		<property name="password" value="#{config['jdbc.password']}" />
+		<!-- 自动提交 -->
+		<property name="defaultAutoCommit" value="true" />
+		
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="#{config['jdbc.initialSize']}" />
+		<property name="minIdle" value="#{config['jdbc.minIdle']}" />
+		<property name="maxIdle" value="#{config['jdbc.maxIdle']}" />
+
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWaitMillis" value="#{config['jdbc.maxWait']}" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+
+		<!-- 用来检测连接是否有效的sql -->
+		<property name="validationQuery" value="SELECT '1'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+
+		<!-- 打开PSCache是否缓存preparedStatement，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="20" />
+	</bean>
+
+	<!-- dataSourceBeta -->
+	
+</beans>
